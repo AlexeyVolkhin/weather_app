@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../models/post.dart';
@@ -9,6 +10,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.watch<RequestModel>();
+    TextStyle style =  TextStyle(
+      foreground: Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = Colors.black.withOpacity(0.5),
+      decoration: TextDecoration.none
+    );
     print(model.response);
 
     final page = Stack(
@@ -49,11 +57,16 @@ class HomePage extends StatelessWidget {
             Text(model.response['name']),
             Row(
               children: [
-                Image.asset('assets/images/background.png'),
-                Text(model.response['weather'][0]['main']),
+                SvgPicture.asset('assets/icons/${model.response['weather'][0]['icon']}.svg'),
+                Text(model.response['weather'][0]['main'], style: style,),
               ],
             ),
-            Text(model.response['weather'][0]['main']),
+            Row(
+              children: [
+                Image.asset('assets/mainIcons/humidity.png'),
+                Text((model.response['main']['humidity']).toString()),
+              ],
+            ),
             Text(model.response['weather'][0]['main']),
             Text(model.response['weather'][0]['main']),
             Text(model.response['weather'][0]['main']),
