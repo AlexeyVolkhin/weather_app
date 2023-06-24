@@ -49,8 +49,6 @@ class RequestModel extends ChangeNotifier {
     try {
       resp = await client.send(req).timeout(const Duration(seconds: 15));
       body = await resp.stream.bytesToString();
-      // print(resp.statusCode);
-      // print(body);
     } on TimeoutException {
       throw Exception("Нет ответа от сервера");
     } finally {
