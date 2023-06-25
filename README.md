@@ -1,16 +1,11 @@
-# untitled
+# Weather application by Volkhin
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Значится что тут у нас, а тут у нас погодное приложение, что оно делает:
+1) При запуске спрашивает разрешение на отслеживание текущей геолокации, чтобы показать на главное экране погоду в этом местоположении;
+2) Если не получается, то выдает ошибку и варианты:
+   а) попробовать еще раз;
+   б) посмотреть описание ошибки;
+3) Переход на экран с добавленными городами (записываются в БД и берутся из БД). На этом экране короткая сводка по погоде;
+4) Экран добавления городов в БД из списка городов;
+5) В пунктах 3 и 4 есть поисковые строки по названию города;
+6) Пока это все, если этот пункт не удален к моменту, когда ты читаешь, значит, я его не удалил.
