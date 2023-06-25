@@ -25,8 +25,6 @@ class WidgetPage extends StatelessWidget {
     }
 
     if (model.response['cod'] == 200){
-      print(model.response);
-      print(model.response['weather'][0]['icon']);
       return GestureDetector(
         onTap: (){
           context.go('/fullInfo');
@@ -44,43 +42,53 @@ class WidgetPage extends StatelessWidget {
                         color: Colors.black45,
                         width: 40,
                       ),
-                      Text(model.response['weather'][0]['main'],),
+                      Text(' ${model.response['weather'][0]['main']}'),
                     ],
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset('assets/mainIcons/humidity.png', color: Colors.black45,),
-                      Text((model.response['main']['humidity']).toString()),
+                      Text(' ${model.response['main']['humidity']}%'),
                     ],
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset('assets/mainIcons/pressure.png', color: Colors.black45,),
-                      Text('${(model.response['main']['pressure'])} мм рт. ст.',),
+                      Text(' ${(model.response['main']['pressure'])} мм рт. ст.',),
                     ],
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset('assets/mainIcons/wind.png', color: Colors.black45,),
-                      Text('${(model.response['wind']['speed'])} м/с',),
+                      Text(' ${(model.response['wind']['speed'])} м/с',),
                     ],
                   ),
                 ],),
       );}
 
     else {
-      return Row(
+      return Wrap(
+        spacing: 10,
+        direction: Axis.vertical,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          const Expanded(child:  Text('Упс, произошла ошибка',)),
-          TextButton(
+          const Text(
+            'Упс, произошла ошибка!',
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
+          IconButton(
+              style: IconButton.styleFrom(
+                  foregroundColor: Colors.black.withOpacity(0.8)),
               onPressed: () {
                 model.getWeatherData();
               },
-              child: const Text('Обновить')),
+              icon: const Icon(Icons.refresh_outlined)),
           TextButton(
+              style: TextButton.styleFrom(
+                  foregroundColor: Colors.black.withOpacity(0.5)),
               onPressed: () {
                 context.pushNamed('base', pathParameters: {'response': jsonEncode(model.response)});
               },

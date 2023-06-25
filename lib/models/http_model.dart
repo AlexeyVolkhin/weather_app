@@ -22,7 +22,6 @@ class RequestModel extends ChangeNotifier {
     url = "https://api.openweathermap.org/data/2.5/weather?"
         "lat=${position.latitude}&"
         "lon=${position.longitude}&"
-        // "exclude=&"
         "appid=092668ba17076cf6c077dfedfa76949c"
         "&units=metric";
     } on Exception {
