@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class InfoPage extends StatelessWidget {
@@ -11,6 +12,13 @@ class InfoPage extends StatelessWidget {
     Map jsonResponse = jsonDecode(response);
 
     return Scaffold(
+      floatingActionButton: TextButton(
+          style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
+          onPressed: (){
+            context.pop();
+          },
+          child: const Text('Назад')),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       body: Stack(
           alignment: AlignmentDirectional.center,
           children: [

@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: TextButton(
+          style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
           onPressed: (){
             context.go('/cities');
             },

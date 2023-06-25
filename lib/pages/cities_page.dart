@@ -22,11 +22,13 @@ class CitiesPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-                onPressed: (){
-                  context.pop();
-                },
-                child: const Text('Назад')),
+                style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
+              onPressed: (){
+                context.pop();
+              },
+              child: const Text('Назад')),
             TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
                 onPressed: (){
                   context.go('/citiesManager');
                 },
