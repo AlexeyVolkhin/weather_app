@@ -14,7 +14,7 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'db/map.dart';
+import 'db/city.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -110,7 +110,7 @@ ModelDefinition getObjectBoxModel() {
           final nameOffset = fbb.writeString(object.name);
           final stateOffset = fbb.writeString(object.state);
           final countryOffset = fbb.writeString(object.country);
-          fbb.startTable(17);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
           fbb.addOffset(2, stateOffset);
@@ -129,11 +129,13 @@ ModelDefinition getObjectBoxModel() {
             ..name = const fb.StringReader(asciiOptimization: true)
                 .vTableGet(buffer, rootOffset, 6, '')
             ..state = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 6, '')
+                .vTableGet(buffer, rootOffset, 8, '')
+            ..country = const fb.StringReader(asciiOptimization: true)
+                .vTableGet(buffer, rootOffset, 10, '')
             ..lat =
-                const fb.Float64Reader().vTableGet(buffer, rootOffset, 20, 0)
+                const fb.Float64Reader().vTableGet(buffer, rootOffset, 12, 0)
             ..lon =
-                const fb.Float64Reader().vTableGet(buffer, rootOffset, 22, 0);
+                const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0);
 
           return object;
         }),

@@ -24,8 +24,13 @@ class HomePage extends StatelessWidget {
     );
     // print(model.response);
 
-    final page = Scaffold(
-      appBar: AppBar(),
+    return Scaffold(
+      floatingActionButton: TextButton(
+          onPressed: (){
+            context.go('/cities');
+            },
+          child: const Text('Список городов')),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
 
       body: Stack(
             alignment: AlignmentDirectional.center,
@@ -37,19 +42,9 @@ class HomePage extends StatelessWidget {
                       image: AssetImage('assets/images/background.png'),
                       fit: BoxFit.cover,
                     ))),
-              Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(children: [
-                    IconButton(
-                        onPressed: () {
-                          context.go('/cities');
-                        },
-                        icon: const Icon(Icons.add))
-                  ],)),
               const WidgetPage(),
 
               ]),
     );
 
-  return page;
 }}

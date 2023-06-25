@@ -55,5 +55,7 @@ class RequestModel extends ChangeNotifier {
     }
 
       return jsonDecode(body);
+  }
 
-  }}
+
+}

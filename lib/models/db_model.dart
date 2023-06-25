@@ -7,19 +7,41 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:objectbox/objectbox.dart';
+import 'package:weather_app/models/http_model.dart';
 
-import '../db/map.dart';
+import '../db/city.dart';
+import '../objectBox.g.dart';
 
 class DataBaseModel extends ChangeNotifier {
 
   final Store _store;
-  List<dynamic> citiesList = [];
   String? searchString;
-
+  Condition<CityEntity>? conds;
+  List<CityEntity> citiesListFromDB = [];
+  List<dynamic> citiesData = [];
 
 
   DataBaseModel(this._store) {
-    getCitiesList();
+    citiesFromDB();
+    if (citiesListFromDB.isNotEmpty){
+      getCitiesData();
+    }
+  }
+
+
+  List<CityEntity> citiesFromDB() {
+    if (searchString != null) {
+      conds = CityEntity_.name
+      .contains(searchString!.toLowerCase(), caseSensitive: false);
+
+    }
+    citiesListFromDB = _store
+        .box<CityEntity>()
+        .query(conds)
+        .order(CityEntity_.name, flags: Order.descending)
+        .build()
+        .find();
+    return citiesListFromDB;
   }
 
   search(String search) {
@@ -27,20 +49,46 @@ class DataBaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-   Future<List<dynamic>> getCitiesList() async {
-    var response = await rootBundle.loadString('assets/cities/city_list.json');
-    citiesList = await jsonDecode(response);
+  void dbAddCity(name, state, country, lat, lon, id) {
+    final box = _store.box<CityEntity>();
+    var city = CityEntity();
+    city.name = name;
+    city.state = state;
+    city.country = country;
+    city.lat = lat;
+    city.lon = lon;
+    city.id = id;
+    box.put(city);
+    print(city.lat);
+    print(lat);
     notifyListeners();
-    return citiesList;
   }
 
-  List<dynamic> citiesListFunc(){
-    if (searchString != null) {
-      List<dynamic> newPointList = [];
-      return citiesList.where((element) =>
-          element['name'].contains(searchString)).toList();
-      }
+  void dbDelete(int id) {
+    final box = _store.box<CityEntity>();
+    box.remove(id);
+    notifyListeners();
+  }
 
-    return citiesList;
+  void addCity(List<dynamic> cities){
+    for (var i in citiesListFromDB) {
+      cities.removeWhere((element) => element['id'] == i.id);
+  }}
+
+  Future<List<dynamic>> getCitiesData() async {
+
+    for (var i in citiesListFromDB){
+      String url = "https://api.openweathermap.org/data/2.5/weather?"
+          "lat=${i.lat}&"
+          "lon=${i.lon}&"
+      // "exclude=&"
+          "appid=092668ba17076cf6c077dfedfa76949c"
+          "&units=metric";
+      Map<String, dynamic> resp = await RequestModel().doRequest(url);
+      citiesData.add(resp);
+    }
+    // print(citiesData);
+    notifyListeners();
+    return citiesData;
 
   }}

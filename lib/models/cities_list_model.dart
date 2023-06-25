@@ -4,17 +4,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
-import 'package:objectbox/objectbox.dart';
-
-import '../db/map.dart';
 
 class CitiesListModel extends ChangeNotifier {
 
   List<dynamic> citiesList = [];
   String? searchString;
-
 
 
   CitiesListModel() {
@@ -35,7 +29,6 @@ class CitiesListModel extends ChangeNotifier {
 
   List<dynamic> citiesListFunc(){
     if (searchString != null) {
-      List<dynamic> newPointList = [];
       return citiesList.where((element) =>
           element['name'].contains(searchString)).toList();
     }
