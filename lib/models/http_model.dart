@@ -1,7 +1,5 @@
-
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
@@ -35,7 +33,6 @@ class RequestModel extends ChangeNotifier {
     response = await doRequest(url);
     isLoading = false;
     notifyListeners();
-
   }}
 
   Future<Map<String, dynamic>> doRequest(url) async {
@@ -53,9 +50,6 @@ class RequestModel extends ChangeNotifier {
     } finally {
       client.close();
     }
-
       return jsonDecode(body);
   }
-
-
 }

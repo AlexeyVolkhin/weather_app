@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 
@@ -14,7 +13,6 @@ class InfoPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
           alignment: AlignmentDirectional.center,
-          // fit: StackFit.expand,
           children: [
             Container(
               decoration: const BoxDecoration(
@@ -23,7 +21,6 @@ class InfoPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ))),
             Text(jsonResponse['message'])
-
           ]),
     );
   }}

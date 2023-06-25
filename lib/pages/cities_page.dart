@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/db/city.dart';
 import 'package:weather_app/models/db_model.dart';
-import 'package:weather_app/models/http_model.dart';
-
 import '../widgets/search_bar.dart';
 
 class CitiesPage extends StatelessWidget {
@@ -17,10 +15,7 @@ class CitiesPage extends StatelessWidget {
     final model = context.watch<DataBaseModel>();
 
     List<dynamic> citiesData = model.citiesData;
-
     List<CityEntity> citiesListFromDB = model.citiesFromDB();
-
-    print(citiesData);
 
     return Scaffold(
         floatingActionButton: Row(
@@ -76,7 +71,6 @@ class CitiesPage extends StatelessWidget {
                                   style: const TextStyle(fontWeight: FontWeight.w700)),
                               Text('${citiesData[index]['main']['pressure']} мм рт. ст',
                                   style: const TextStyle(fontWeight: FontWeight.w700)),
-
                             ],
                           );
                         }

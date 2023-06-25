@@ -19,12 +19,10 @@ Future<Database> getDatabase() async {
             "country TEXT, 
             
             "lat TEXT,
-            "lon TEXT,
-            
+            "lon TEXT,     
           )
       ''');
   });
-
   return db;
 }
 

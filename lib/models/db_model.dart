@@ -1,14 +1,7 @@
-
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
-import 'package:objectbox/objectbox.dart';
+// import 'package:objectbox/objectbox.dart';
 import 'package:weather_app/models/http_model.dart';
-
 import '../db/city.dart';
 import '../objectBox.g.dart';
 
@@ -20,7 +13,6 @@ class DataBaseModel extends ChangeNotifier {
   List<CityEntity> citiesListFromDB = [];
   List<dynamic> citiesData = [];
 
-
   DataBaseModel(this._store) {
     citiesFromDB();
     if (citiesListFromDB.isNotEmpty){
@@ -28,13 +20,12 @@ class DataBaseModel extends ChangeNotifier {
     }
   }
 
-
   List<CityEntity> citiesFromDB() {
     if (searchString != null) {
       conds = CityEntity_.name
       .contains(searchString!.toLowerCase(), caseSensitive: false);
-
     }
+
     citiesListFromDB = _store
         .box<CityEntity>()
         .query(conds)
@@ -59,8 +50,6 @@ class DataBaseModel extends ChangeNotifier {
     city.lon = lon;
     city.id = id;
     box.put(city);
-    print(city.lat);
-    print(lat);
     notifyListeners();
   }
 
@@ -76,7 +65,6 @@ class DataBaseModel extends ChangeNotifier {
   }}
 
   Future<List<dynamic>> getCitiesData() async {
-
     for (var i in citiesListFromDB){
       String url = "https://api.openweathermap.org/data/2.5/weather?"
           "lat=${i.lat}&"
@@ -87,8 +75,6 @@ class DataBaseModel extends ChangeNotifier {
       Map<String, dynamic> resp = await RequestModel().doRequest(url);
       citiesData.add(resp);
     }
-    // print(citiesData);
     notifyListeners();
     return citiesData;
-
   }}
