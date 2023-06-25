@@ -63,7 +63,7 @@ class CitiesPage extends StatelessWidget {
                         var city = citiesListFromDB[index];
                         Widget widget = const Text('no data');
                         if (citiesData.isNotEmpty){
-                          widget = Row(
+                          widget = Wrap(
                             children: [
                               Text('${citiesData[index]['weather'][0]['main']},  ',
                                   style: const TextStyle(fontWeight: FontWeight.w700)),
