@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/db/db.dart';
+import 'package:weather_app/models/db_model.dart';
+import 'package:weather_app/pages/cities_list_page.dart';
+import 'package:weather_app/pages/info_page.dart';
 import 'package:weather_app/pages/cities_page.dart';
 import 'package:weather_app/pages/home_page.dart';
 
-import 'models/post.dart';
+import 'models/http_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,11 +17,15 @@ void main() async {
   if (!(await Permission.location.isGranted)) {
     await Permission.location.request();
   }
-  // await RequestModel().activate();
+
+  final objectbox = await ObjectBox.create();
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(
       create: (_) => RequestModel(),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => DataBaseModel(objectbox.store),
     ),
 
   ], child:  MyApp()));
@@ -33,10 +41,21 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => const HomePage(),
 
         routes: [
-
           GoRoute(
               path: "cities",
               builder: (context, state) => const CitiesPage()),
+          GoRoute(
+              path: "citiesManager",
+              builder: (context, state) => const CitiesManager()),
+          GoRoute(
+              path: "base:response",
+              name: "base",
+              builder: (context, state) {
+                  return InfoPage(
+                    response: state.pathParameters['response']!
+                  );
+                }
+              )
         ],
       ),
     ],
