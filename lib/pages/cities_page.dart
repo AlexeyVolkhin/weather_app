@@ -82,8 +82,9 @@ class CitiesPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 3),
                           child: ListTile(
                             onTap: (){
+                              if (citiesData.isNotEmpty) {
                               httpModel.response = citiesData[index];
-                              context.go('/fullInfo');
+                              context.go('/fullInfo');}
                             },
                             trailing: IconButton(
                                 onPressed: (){
