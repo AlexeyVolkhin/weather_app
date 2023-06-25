@@ -22,11 +22,13 @@ class CitiesPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-                onPressed: (){
-                  context.pop();
-                },
-                child: const Text('Назад')),
+                style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
+              onPressed: (){
+                context.pop();
+              },
+              child: const Text('Назад')),
             TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
                 onPressed: (){
                   context.go('/citiesManager');
                 },
@@ -63,7 +65,7 @@ class CitiesPage extends StatelessWidget {
                         var city = citiesListFromDB[index];
                         Widget widget = const Text('no data');
                         if (citiesData.isNotEmpty){
-                          widget = Row(
+                          widget = Wrap(
                             children: [
                               Text('${citiesData[index]['weather'][0]['main']},  ',
                                   style: const TextStyle(fontWeight: FontWeight.w700)),

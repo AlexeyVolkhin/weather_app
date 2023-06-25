@@ -31,6 +31,7 @@ class _CitiesManagerState extends State<CitiesManager> {
 
     return Scaffold(
         floatingActionButton: TextButton(
+            style: TextButton.styleFrom(foregroundColor: Colors.black.withOpacity(0.5)),
             onPressed: (){
               context.pop();
             },
