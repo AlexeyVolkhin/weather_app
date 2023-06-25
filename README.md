@@ -9,3 +9,22 @@
 4) Экран добавления городов в БД из списка городов;
 5) В пунктах 3 и 4 есть поисковые строки по названию города;
 6) Пока это все, если этот пункт не удален к моменту, когда ты читаешь, значит, я его не удалил.
+
+Список используемых библиотек:
+
+  go_router: ^8.1.0
+  provider: ^6.0.5
+  http: ^0.13.5
+  path_provider: ^2.0.11
+  sqflite_sqlcipher: ^2.1.1+1
+  path: ^1.8.2
+  objectbox: ^1.7.1
+  objectbox_flutter_libs: any
+  geolocator: ^9.0.2
+  location: ^5.0.0-dev.8
+  permission_handler: ^10.2.0
+  flutter_svg: 1.1.6
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_hooks: ^0.18.6
+
+Для получение погодной информации используется онлайн-сервис OpenWeatherMap.
