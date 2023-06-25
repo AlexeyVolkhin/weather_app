@@ -11,15 +11,8 @@ dependencies:
     sdk: flutter
 
   go_router: ^8.1.0
-  latlong2: ^0.8.1
-  email_validator: ^2.1.17
   provider: ^6.0.5
-  url_launcher: ^6.0.8
-  package_info_plus: ^1.0.6
   http: ^0.13.5
-  #  disk_space: ^0.2.1
-  platform_device_id: ^1.0.1
-  shared_preferences: ^2.0.16
   path_provider: ^2.0.11
   sqflite_sqlcipher: ^2.1.1+1
   path: ^1.8.2
@@ -28,7 +21,6 @@ dependencies:
   geolocator: ^9.0.2
   location: ^5.0.0-dev.8
   permission_handler: ^10.2.0
-  cupertino_icons: ^1.0.2
   flutter_svg: 1.1.6
   flutter_staggered_grid_view: ^0.6.2
   flutter_hooks: ^0.18.6
