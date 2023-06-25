@@ -25,6 +25,8 @@ class HomePage extends StatelessWidget {
     // print(model.response);
 
     final page = Scaffold(
+      appBar: AppBar(),
+
       body: Stack(
             alignment: AlignmentDirectional.center,
               // fit: StackFit.expand,

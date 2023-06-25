@@ -8,7 +8,9 @@ class CitiesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        appBar: AppBar(),
+
+        body: Stack(
         alignment: AlignmentDirectional.center,
         // fit: StackFit.expand,
         children: [

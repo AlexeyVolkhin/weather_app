@@ -10,15 +10,14 @@ import 'package:objectbox/objectbox.dart';
 
 import '../db/map.dart';
 
-class DataBaseModel extends ChangeNotifier {
+class CitiesListModel extends ChangeNotifier {
 
-  final Store _store;
   List<dynamic> citiesList = [];
   String? searchString;
 
 
 
-  DataBaseModel(this._store) {
+  CitiesListModel() {
     getCitiesList();
   }
 
@@ -27,7 +26,7 @@ class DataBaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-   Future<List<dynamic>> getCitiesList() async {
+  Future<List<dynamic>> getCitiesList() async {
     var response = await rootBundle.loadString('assets/cities/city_list.json');
     citiesList = await jsonDecode(response);
     notifyListeners();
@@ -39,7 +38,7 @@ class DataBaseModel extends ChangeNotifier {
       List<dynamic> newPointList = [];
       return citiesList.where((element) =>
           element['name'].contains(searchString)).toList();
-      }
+    }
 
     return citiesList;
 

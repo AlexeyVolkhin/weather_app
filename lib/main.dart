@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/db/db.dart';
+import 'package:weather_app/models/cities_list_model.dart';
 import 'package:weather_app/models/db_model.dart';
 import 'package:weather_app/pages/cities_list_page.dart';
 import 'package:weather_app/pages/info_page.dart';
@@ -26,6 +27,9 @@ void main() async {
     ),
     ChangeNotifierProvider(
       create: (_) => DataBaseModel(objectbox.store),
+    ),
+    ChangeNotifierProvider(
+      create: (_) => CitiesListModel(),
     ),
 
   ], child:  MyApp()));

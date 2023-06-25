@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/db/map.dart';
+import 'package:weather_app/models/cities_list_model.dart';
 import 'package:weather_app/models/db_model.dart';
 
 import '../widgets/search_bar.dart';
@@ -36,37 +38,27 @@ class _CitiesManagerState extends State<CitiesManager> {
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> actionsButtons = [];
-    Widget? leading;
-    String pointNameShow = '';
-    String pointLength = '';
-    // List pointList = [];
-    double count = 0.001;
 
+    final model = context.watch<CitiesListModel>();
 
-    final model = context.watch<DataBaseModel>();
-
-    List<dynamic> pointList = model.pointList;
+    List<dynamic> citiesList = model.citiesListFunc();
 
 
     return Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(
-            leading: leading,
-            // title: Text(title),
-            actions: actionsButtons),
+        appBar: AppBar(),
         // drawer: const Menu(),
         body: Column(children: [
           SearchField(model.searchString, (val) => model.search(val)),
           Expanded(
-            child: GridView.builder(
+            child: MasonryGridView.builder(
                 gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
+                const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                 cacheExtent: 1.0,
-                itemCount: pointList.length,
+                itemCount: citiesList.length,
                 addAutomaticKeepAlives: false,
                 itemBuilder: (context, index) {
 
@@ -83,13 +75,13 @@ class _CitiesManagerState extends State<CitiesManager> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(pointList[index]['name'],
+                            Text(citiesList[index]['name'],
                                 style: const TextStyle(fontWeight: FontWeight.w700)),
-                            Text(pointList[index]['country'],
+                            Text(citiesList[index]['country'],
                                 style: const TextStyle(color: Colors.black)),
                             Text(
                                 style: const TextStyle(wordSpacing: 5),
-                                '${pointList[index]['coord']['lat']}  ${pointList[index]['coord']['lon']}'),
+                                '${citiesList[index]['coord']['lat']}  ${citiesList[index]['coord']['lon']}'),
                           ],
                         ),
                       ),
