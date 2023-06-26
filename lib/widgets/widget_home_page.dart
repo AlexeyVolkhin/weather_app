@@ -74,7 +74,7 @@ class WidgetPage extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           const Text('Упс, произошла ошибка!   ',),
-          TextButton(
+          IconButton(
               onPressed: () {
                 model.getWeatherData();
               },
