@@ -48,6 +48,13 @@ class WidgetPage extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Image.asset('assets/mainIcons/pressure.png', color: Colors.black45,),
+                      Text(' Температура ${model.response['main']['temp'].toString()} °C'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
                       Image.asset('assets/mainIcons/humidity.png', color: Colors.black45,),
                       Text(' ${model.response['main']['humidity']}%'),
                     ],
