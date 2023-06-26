@@ -76,8 +76,8 @@ class _CitiesManagerState extends State<CitiesManager> {
                                         citiesList[index]['coord']['lon'],
                                         citiesList[index]['id'],
                                     );
-                                    citiesList.removeWhere((element) => element['id'] == citiesList[index]['id'],
-                                    );
+                                    dataBaseModel.addCitiesData(citiesList[index]['coord']['lat'], citiesList[index]['coord']['lon']);
+                                    citiesList.removeWhere((element) => element['id'] == citiesList[index]['id'], );
 
                                   },
                                   icon: const Icon(Icons.add)),

@@ -82,6 +82,7 @@ class CitiesPage extends StatelessWidget {
                             trailing: IconButton(
                                 onPressed: (){
                                   model.dbDelete(citiesListFromDB[index].id);
+                                  model.citiesData.removeWhere((element) => element['id'] == citiesListFromDB[index].id);
                                 },
                                 icon: const Icon(Icons.cancel)),
                             title: Column(
@@ -105,5 +106,4 @@ class CitiesPage extends StatelessWidget {
       ],
     ));
   }
-
 }
