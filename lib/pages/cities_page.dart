@@ -64,7 +64,7 @@ class CitiesPage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         var city = citiesListFromDB[index];
                         Widget widget = const Text('no data');
-                        if (citiesData.isNotEmpty){
+                        if (citiesData.length == citiesListFromDB.length){
                           widget = Wrap(
                             children: [
                               Text('${citiesData[index]['weather'][0]['main']},  ',

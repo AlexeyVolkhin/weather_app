@@ -15,7 +15,7 @@ class DataBaseModel extends ChangeNotifier {
 
   DataBaseModel(this._store) {
     citiesFromDB();
-    if (citiesListFromDB.isNotEmpty){
+    if (citiesListFromDB.length != citiesData.length){
       getCitiesData();
     }
   }
