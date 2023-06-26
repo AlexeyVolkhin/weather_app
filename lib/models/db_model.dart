@@ -59,17 +59,21 @@ class DataBaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addCity(List<dynamic> cities){
-    for (var i in citiesListFromDB) {
-      cities.removeWhere((element) => element['id'] == i.id);
-  }}
+  void addCitiesData(lat, lon) async {
+    String url = "https://api.openweathermap.org/data/2.5/weather?"
+        "lat=$lat&"
+        "lon=$lon&"
+        "appid=092668ba17076cf6c077dfedfa76949c"
+        "&units=metric";
+    Map<String, dynamic> resp = await RequestModel().doRequest(url);
+    citiesData.add(resp);
+  }
 
   Future<List<dynamic>> getCitiesData() async {
     for (var i in citiesListFromDB){
       String url = "https://api.openweathermap.org/data/2.5/weather?"
           "lat=${i.lat}&"
           "lon=${i.lon}&"
-      // "exclude=&"
           "appid=092668ba17076cf6c077dfedfa76949c"
           "&units=metric";
       Map<String, dynamic> resp = await RequestModel().doRequest(url);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weather_app/widgets/widget.dart';
+import 'package:weather_app/widgets/widget_home_page.dart';
 
 
 class HomePage extends StatelessWidget {

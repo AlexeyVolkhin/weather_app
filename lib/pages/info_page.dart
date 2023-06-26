@@ -18,7 +18,7 @@ class InfoPage extends StatelessWidget {
             context.pop();
           },
           child: const Text('Назад')),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       body: Stack(
           alignment: AlignmentDirectional.center,
           children: [
@@ -28,7 +28,9 @@ class InfoPage extends StatelessWidget {
                     image: AssetImage('assets/images/background.png'),
                     fit: BoxFit.cover,
                   ))),
-            Text(jsonResponse['message'])
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                child: Text(jsonResponse['message']))
           ]),
     );
   }}
