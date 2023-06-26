@@ -4,8 +4,7 @@ import 'package:weather_app/widgets/widget.dart';
 
 
 class HomePage extends StatelessWidget {
-  final Widget? widget;
-  const HomePage({super.key, this.widget});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

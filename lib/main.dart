@@ -6,6 +6,7 @@ import 'package:weather_app/db/db.dart';
 import 'package:weather_app/models/cities_list_model.dart';
 import 'package:weather_app/models/db_model.dart';
 import 'package:weather_app/pages/cities_list_page.dart';
+import 'package:weather_app/pages/full_info_page.dart';
 import 'package:weather_app/pages/info_page.dart';
 import 'package:weather_app/pages/cities_page.dart';
 import 'package:weather_app/pages/home_page.dart';
@@ -51,6 +52,9 @@ class MyApp extends StatelessWidget {
           GoRoute(
               path: "citiesManager",
               builder: (context, state) => const CitiesManager()),
+          GoRoute(
+              path: "fullInfo",
+              builder: (context, state) => const FullInfoPage()),
           GoRoute(
               path: "base:response",
               name: "base",

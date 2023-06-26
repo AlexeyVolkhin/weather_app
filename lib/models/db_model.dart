@@ -73,7 +73,8 @@ class DataBaseModel extends ChangeNotifier {
           "appid=092668ba17076cf6c077dfedfa76949c"
           "&units=metric";
       Map<String, dynamic> resp = await RequestModel().doRequest(url);
-      citiesData.add(resp);
+      if (resp['cod'] == 200){
+      citiesData.add(resp);}
     }
     notifyListeners();
     return citiesData;

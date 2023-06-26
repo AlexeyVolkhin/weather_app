@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/db/city.dart';
 import 'package:weather_app/models/db_model.dart';
+import 'package:weather_app/models/http_model.dart';
 import '../widgets/search_bar.dart';
 
 class CitiesPage extends StatelessWidget {
@@ -13,6 +14,7 @@ class CitiesPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final model = context.watch<DataBaseModel>();
+    final httpModel = context.watch<RequestModel>();
 
     List<dynamic> citiesData = model.citiesData;
     List<CityEntity> citiesListFromDB = model.citiesFromDB();
@@ -79,6 +81,11 @@ class CitiesPage extends StatelessWidget {
                         return Container(
                           padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 3),
                           child: ListTile(
+                            onTap: (){
+                              if (citiesData.isNotEmpty) {
+                              httpModel.response = citiesData[index];
+                              context.go('/fullInfo');}
+                            },
                             trailing: IconButton(
                                 onPressed: (){
                                   model.dbDelete(citiesListFromDB[index].id);
