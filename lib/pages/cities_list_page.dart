@@ -76,8 +76,7 @@ class _CitiesManagerState extends State<CitiesManager> {
                                         citiesList[index]['coord']['lon'],
                                         citiesList[index]['id'],
                                     );
-                                    citiesList.removeWhere((element) => element['id'] == citiesList[index]['id'],
-                                    );
+                                    citiesList.removeWhere((element) => element['id'] == citiesList[index]['id'],);
 
                                   },
                                   icon: const Icon(Icons.add)),
@@ -87,15 +86,8 @@ class _CitiesManagerState extends State<CitiesManager> {
                                 children: [
                                   Text(citiesList[index]['name'],
                                       style: const TextStyle(fontWeight: FontWeight.w700)),
-                                  Text(citiesList[index]['state'],
-                                      style: const TextStyle(fontWeight: FontWeight.w700)),
-                                  Text(citiesList[index]['country'],
-                                      style: const TextStyle(color: Colors.black)),
-                                  Text(citiesList[index]['id'].toString(),
-                                      style: const TextStyle(color: Colors.black)),
-                                  Text(
-                                      style: const TextStyle(wordSpacing: 5),
-                                      '${citiesList[index]['coord']['lat']}  ${citiesList[index]['coord']['lon']}'),
+                                  Text('Штат: ${citiesList[index]['state']}'),
+                                  Text('Страна: ${citiesList[index]['country']}'),
                                 ],
                               ),
                             ),
